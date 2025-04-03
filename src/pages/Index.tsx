@@ -7,6 +7,10 @@ import CategorySection from '../components/home/CategorySection';
 import VendorSection from '../components/home/VendorSection';
 import TestimonialSection from '../components/home/TestimonialSection';
 import { Link } from 'react-router-dom';
+import 'primeicons/primeicons.css';
+
+
+
 
 const Index = () => {
   useEffect(() => {
@@ -16,7 +20,7 @@ const Index = () => {
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
     };
-  }, []);
+  }, [])  ;
 
   return (
     <div className="flex flex-col min-h-screen">

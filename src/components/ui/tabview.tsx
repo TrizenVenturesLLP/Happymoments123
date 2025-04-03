@@ -1,0 +1,144 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+import PhotoGallery from "./photo-gallery";
+import { motion, AnimatePresence } from "framer-motion";
+
+const RadioTabs = () => {
+  const [selectedTab, setSelectedTab] = useState("Portfolio");
+
+  return (
+    <StyledWrapper>
+      {/* Radio Tabs */}
+      <div className="radio-inputs" role="radiogroup">
+        {["Portfolio", "Reviews"].map((tab) => (
+          <label key={tab} className="radio">
+            <input
+              type="radio"
+              name="radio"
+              checked={selectedTab === tab}
+              onChange={() => setSelectedTab(tab)}
+              aria-label={tab}
+            />
+            <span className="name">{tab}</span>
+          </label>
+        ))}
+      </div>
+
+      {/* Animated Tab Content */}
+      {/* <div className="tab-content-container"> */}
+        <AnimatePresence mode="wait">
+          {selectedTab === "Portfolio" && (
+            <motion.div
+              key="portfolio"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -50, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              <PortfolioContent />
+            </motion.div>
+          )}
+
+          {selectedTab === "Reviews" && (
+            <motion.div
+              key="reviews"
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 50, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              <ReviewsContent />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      {/* </div> */}
+    </StyledWrapper>
+  );
+};
+
+// Tab Content Components
+const PortfolioContent = () => (
+  <PhotoGallery
+    media={[
+      "/videos/abhilash/color_shot.mp4",
+      "/videos/abhilash/Coorporate_Gathering.mp4",
+      "/videos/abhilash/Coorporate_Lighting.mp4",
+      "/videos/abhilash/Entry_Lighting.mp4",
+      "/videos/abhilash/Fireworks.mp4",
+      "/videos/abhilash/FireColor.mp4",
+      "/videos/abhilash/Sangeeth_2.mp4",
+      "/videos/abhilash/Sangeeth_3.mp4",
+      "/videos/abhilash/Sangeeth_Lighting.mp4",
+    ]}
+  />
+);
+
+const ReviewsContent = () => <div className="content">⭐ Reviews Content</div>;
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+
+  .radio-inputs {
+    display: flex;
+    border-radius: 0.5rem;
+    background-color: #f58700;
+    padding: 0.25rem;
+    margin: 0.25rem 0 2rem 0;
+    width: 300px;
+    font-size: 14px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .radio {
+    flex: 1;
+    text-align: center;
+  }
+
+  .radio input {
+    display: none;
+  }
+
+  .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    color: #ffffff;
+    
+    transition: all 0.4s ease-in-out;
+  }
+
+  .radio input:checked + .name {
+    background-color: #fff;
+    color: #374151;
+    font-weight: 600;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .radio .name:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    
+  }
+
+  .tab-content-container {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+`;
+
+export default RadioTabs;

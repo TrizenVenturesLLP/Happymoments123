@@ -45,17 +45,22 @@ const cities = [
 const heroBackgrounds = [
   {
     id: 1,
-    url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
+    url: "images/birthday-celebration.jpg",
     alt: "Elegant wedding venue with floral decorations"
   },
   {
     id: 2,
-    url: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
+    url: "images/celebrations.jpeg",
     alt: "Happy couple at sunset wedding ceremony"
   },
   {
     id: 3,
-    url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
+    url: "images/corporate.jpg",
+    alt: "Beautiful wedding floral arrangements"
+  },
+  {
+    id: 3,
+    url: "images/wedding.webp",
     alt: "Beautiful wedding floral arrangements"
   },
 ];
