@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PhotoGallery from "./photo-gallery";
 import { motion, AnimatePresence } from "framer-motion";
+import ReviewSection from "./reviews";
 
 const RadioTabs = () => {
   const [selectedTab, setSelectedTab] = useState("Portfolio");
@@ -73,7 +74,7 @@ const PortfolioContent = () => (
   />
 );
 
-const ReviewsContent = () => <div className="content">⭐ Reviews Content</div>;
+const ReviewsContent = () => <div className="content"><ReviewSection/></div>;
 
 const StyledWrapper = styled.div`
   display: flex;

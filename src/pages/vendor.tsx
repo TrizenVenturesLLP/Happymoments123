@@ -20,6 +20,10 @@ export default function Details() {
     image: "",
     featured: false,
     price: PricingCategory.basic,
+    description: `Abhilash and his team are experts in providing event lighting
+              solutions in Telangana, ideal for weddings, parties, and corporate
+              events. Their professional approach guarantees top-quality service,
+              customized to create the perfect ambiance for every occasion.`
   };
   const phoneNumber = "+917330732710"; // Replace with the actual phone number
   const message = "Hello, I am interested in your services!"; // Custom message
@@ -33,112 +37,100 @@ export default function Details() {
   const [selectedTab, setSelectedState] = useState(0);
 
   return (
-    <div className="min-h-screen  bg-black  p-8 ">
-      <Header />
-      <div className="relative min-h-screen w-full flex-col items-center justify-center">
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        >
-          <source src="/videos/fireworks.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        <div className="relative z-10 text-white px-8 pt-32 w-full">
-          <div className="text-4xl font-mono font-bold tracking-wide mb-6 ml-44 flex ">
-            <p className="italic font-mono">CHIEF</p> - {vendor.name}
-          </div>
-          <div className="w-[64rem] bg-gradient-to-b from-blue-400 to-purple-400 rounded-3xl  shadow-md shadow-orange-40  px-8 py-6   item-center justify-start mx-auto">
-            <div className="flex flex-col  mr-8">
-              <div className="flex justify-start">
-                {/* image */}
-                <div className="flex justify-center mb-2">
-                  <img
-                    src="/images/vendor.jpeg"
-                    alt={vendor.name}
-                    className="w-64 h-64 object-cover rounded-full border-2 border-  shadow-xl"
-                  />
-                </div>
-                {/* divider */}
-                <div className="border-l-2 border-black/20 h564 ml-16"></div>
-                <div className="pl-16">
-                  <span className="text-xl text-gray-800 font-bold tracking-wide">
-                    Experts in
+    <div className="bg-black p-4 sm:p-6 md:p-8">
+    <Header />
+    <div className="relative w-full flex flex-col items-center justify-center">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      >
+        <source src="/videos/fireworks.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+  
+      <div className="relative z-10 text-white w-full px-4 sm:px-8 pt-24 md:pt-32">
+        {/* Vendor Header */}
+        <div className="text-2xl sm:text-3xl md:text-3xl font-mono font-bold tracking-wide mb-6 md:pl-44 text-center md:text-left">
+          <p className="italic inline-block">CHIEF</p> - {vendor.name}
+        </div>
+  
+        {/* Vendor Card */}
+        <div className="w-full max-w-5xl mx-auto bg-gradient-to-b from-blue-400 to-purple-400 rounded-3xl shadow-md px-4 sm:px-6 md:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+            {/* Image */}
+            <div className="flex-shrink-0">
+              <img
+                src="/images/vendor.jpeg"
+                alt={vendor.name}
+                className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-cover rounded-full border-2 shadow-xl"
+              />
+            </div>
+  
+            {/* Divider - only visible on large screens */}
+            <div className="hidden md:block border-l-2 border-black/20 h-full mx-6"></div>
+  
+            {/* Info */}
+            <div className="flex flex-col text-black w-full">
+              <span className="text-lg sm:text-xl font-bold tracking-wide">
+                Experts in
+              </span>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {vendor.category.map((cat, index) => (
+                  <span
+                    key={index}
+                    className="rounded-xl bg-blue-50 border-2 px-4 py-1 text-sm font-medium hover:bg-orange-400 hover:text-white transition"
+                  >
+                    {cat}
                   </span>
-
-                  {/* Categories */}
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {vendor.category.map((cat, index) => (
-                      <span
-                        key={index}
-                        className="rounded-xl bg-blue-50 border-2 px-5 py-2 text-black hover:text-white hover:bg-orange-400 text-sm font-medium"
-                      >
-                        {cat}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Location */}
-                  <div className="mt-4 flex items-center">
-                    <span className="text-lg text-black tracking-wide">
-                      {vendor.location}
-                    </span>
-                  </div>
-
-                  {/* Pricing */}
-                  <div className="mt-2 flex items-center text-black">
-                    <span className="mr-2 tracking-normal font-light">
-                      Price
-                    </span>
-                    <div className="px-5 py-1 bg-indigo-700 text-white rounded-md">
-                      {vendor.price.toString()}
-                    </div>
-                  </div>
-
-                  {/* Ratings */}
-                  <div className="mt-2 flex items-center">
-                    {Array.from({ length: vendor.rating }, (_, i) => (
-                      <span key={i} className="text-xl">
-                        <DynamicIcon name="star" size="1x" color="orange" />
-                      </span>
-                    ))}
-                    {Array.from({ length: 5 - vendor.rating }, (_, i) => (
-                      <span key={i} className="text-xl text-white">
-                        <DynamicIcon name="star" size="1x" color={""} />
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Enquire Now Button */}
-                  <Button
-                    label="Enquire now"
-                    className="bg-orange-400 text-white py-2 px-4 mt-4 rounded-md hover:bg-orange-500 transition"
-                    icon="pi pi-check"
-                    onClick={() => openWhatsApp()}
-                  />
+                ))}
+              </div>
+  
+              <div className="mt-4 text-base sm:text-md">{vendor.location}</div>
+  
+              <div className="mt-2 flex items-center text-sm sm:text-base">
+                <span className="mr-2 font-light">Price</span>
+                <div className="px-4 py-1 bg-indigo-700 text-white rounded-md">
+                  {vendor.price.toString()}
                 </div>
               </div>
-            
-                <div className="relative  flex-col item-center justify-center   rounded-xl ">
-                  <p className="relative z-10 px-6 text-black font-light tracking-wide mt-4 ">
-                    Abhilash and his team are experts in providing event
-                    lighting solutions in Telangana, ideal for weddings,
-                    parties, and corporate events. Their professional approach
-                    guarantees top-quality service, customized to create the
-                    perfect ambiance for every occasion.
-                  </p>
-                </div>
-              
+  
+              <div className="mt-2 flex items-center">
+                {Array.from({ length: vendor.rating }, (_, i) => (
+                  <DynamicIcon key={i} name="star" size="1x" color="orange" />
+                ))}
+                {Array.from({ length: 5 - vendor.rating }, (_, i) => (
+                  <DynamicIcon key={i} name="star" size="1x" color="white" />
+                ))}
+              </div>
+  
+              <Button
+                label="Enquire now"
+                className="bg-orange-400 text-white py-2 px-4 mt-4 rounded-md hover:bg-orange-500 transition w-fit"
+                icon="pi pi-check"
+                onClick={openWhatsApp}
+              />
             </div>
+          </div>
+  
+          {/* Description */}
+          <div className="mt-6 text-center md:text-left">
+            <p className="text-black font-light tracking-wide text-sm sm:text-base">
+              
+              {vendor.description}
+            </p>
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center m-8" ><Radio/></div>
-
-    
     </div>
+  
+    {/* Radio Component */}
+    <div className="flex justify-center items-center mt-8">
+      <Radio />
+    </div>
+  </div>
+  
   );
 }
