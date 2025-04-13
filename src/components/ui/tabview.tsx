@@ -3,8 +3,11 @@ import styled from "styled-components";
 import PhotoGallery from "./photo-gallery";
 import { motion, AnimatePresence } from "framer-motion";
 import ReviewSection from "./reviews";
-
-const RadioTabs = () => {
+interface RadioTabsProps {
+  videos: Array<string>;
+}
+const RadioTabs: React.FC<RadioTabsProps> = ({ videos }) => {
+  // Removed duplicate declaration of videos
   const [selectedTab, setSelectedTab] = useState("Portfolio");
 
   return (
@@ -27,54 +30,45 @@ const RadioTabs = () => {
 
       {/* Animated Tab Content */}
       {/* <div className="tab-content-container"> */}
-        <AnimatePresence mode="wait">
-          {selectedTab === "Portfolio" && (
-            <motion.div
-              key="portfolio"
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -50, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-            >
-              <PortfolioContent />
-            </motion.div>
-          )}
+      <AnimatePresence mode="wait">
+        {selectedTab === "Portfolio" && (
+          <motion.div
+            key="portfolio"
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -50, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <PhotoGallery
+    media={videos}
+  />
+          </motion.div>
+        )}
 
-          {selectedTab === "Reviews" && (
-            <motion.div
-              key="reviews"
-              initial={{ x: -50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 50, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-            >
-              <ReviewsContent />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {selectedTab === "Reviews" && (
+          <motion.div
+            key="reviews"
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 50, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <ReviewsContent />
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* </div> */}
     </StyledWrapper>
   );
 };
 
-// Tab Content Components
-const PortfolioContent = () => (
-  <PhotoGallery
-    media={[
-      "/videos/abhilash/color_shot.mp4",
-      "/videos/abhilash/Coorporate_Gathering.mp4",
-      "/videos/abhilash/Coorporate_Lighting.mp4",
-      "/videos/abhilash/Entry_Lighting.mp4",
-      "/videos/abhilash/Fireworks.mp4",
-      "/videos/abhilash/FireColor.mp4",
-      "/videos/abhilash/Sangeeth_2.mp4",
-      "/videos/abhilash/Sangeeth_3.mp4",
-      "/videos/abhilash/Sangeeth_Lighting.mp4",
-    ]}
-  />
-);
 
-const ReviewsContent = () => <div className="content"><ReviewSection/></div>;
+
+const ReviewsContent = () => (
+  <div className="content">
+    <ReviewSection />
+  </div>
+);
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -110,7 +104,7 @@ const StyledWrapper = styled.div`
     border-radius: 0.5rem;
     padding: 0.5rem 0;
     color: #ffffff;
-    
+
     transition: all 0.4s ease-in-out;
   }
 
@@ -123,7 +117,6 @@ const StyledWrapper = styled.div`
 
   .radio .name:hover {
     background-color: rgba(255, 255, 255, 0.6);
-    
   }
 
   .tab-content-container {
