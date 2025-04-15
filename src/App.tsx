@@ -31,7 +31,7 @@ const App = () => (
           <Route path="/blog/:blogId" element={<Navigate to="/" />} />
           <Route path="/blog" element={<Navigate to="/" />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
