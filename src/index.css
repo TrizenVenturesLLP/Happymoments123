@@ -109,3 +109,59 @@
     font-family: 'Playfair Display', serif;
   }
 }
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/CustomFont.woff2') format('woff2'),
+       url('/fonts/CustomFont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'CustomFont', sans-serif;
+}
+
+    .custom-button {
+      background-color: #28a745 !important; /* Custom Green */
+      border-color: #28a745 !important;
+    }
+  /* Tab Container */
+.p-tabview-nav {
+  background-color: black !important; /* Black background */
+  color: white !important; /* White text */
+  display: flex;
+  justify-content: center; /* Center align tabs */
+  border-bottom: 2px solid #2d3748; /* Optional: subtle bottom border */
+}
+
+/* Tab Links */
+.p-tabview-nav-link {
+  background-color: black !important; 
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+  border-bottom: 2px solid transparent; /* Default: no border */
+}
+
+/* Active (Selected) Tab */
+.p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background-color: black !important;
+  color: white !important;
+  border-bottom: 3px solid orange !important; /* Only for active tab */
+  font-weight: bold;
+}
+
+/* Hover Effect */
+.p-tabview-nav-link:hover {
+  background-color: #4a5568 !important; /* Dark gray on hover */
+  color:orange!important;
+}
+
+/* Tab Content */
+.p-tabview .p-tabview-panels {
+  background-color: black !important;
+  color: white !important;
+  padding: 1rem;
+}
+

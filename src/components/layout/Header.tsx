@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate,useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
   DropdownMenu, 
@@ -10,12 +10,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useUserStore } from '@/store/userStore';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
-
+  const navigate = useNavigate();
+  const user = useUserStore((state) => state.user);
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
@@ -88,15 +90,15 @@ const Header = () => {
         </div>
 
         {/* Auth buttons - kept on right */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" className="text-white hover:text-wedding-orange hover:bg-wedding-navy-hover">
+       {user==null && <div className="hidden md:flex items-center space-x-4">
+          <Button variant="ghost" onClick={() =>{ navigate('/login')}} className="text-white hover:text-wedding-orange hover:bg-wedding-navy-hover">
             Log in
           </Button>
           <Button className="bg-wedding-orange hover:bg-wedding-orange-hover text-white">
             Sign up
           </Button>
         </div>
-
+}
         {/* Mobile menu button */}
         <button 
           onClick={toggleMobileMenu} 
@@ -132,9 +134,18 @@ const Header = () => {
               </Link>
             </div>
             <div className="flex flex-col space-y-2 pt-2 border-t border-white/10">
-              <Button variant="ghost" className="justify-start px-0 hover:bg-transparent text-white hover:text-wedding-orange">
-                Log in
-              </Button>
+            <Button
+  variant="ghost"
+  onClick={() => {
+    console.log("navigatinfg");
+    navigate("/login");
+  }}
+  className="text-white hover:text-wedding-orange hover:bg-wedding-navy-hover"
+>
+  Log in
+</Button>
+
+
               <Button className="justify-start bg-wedding-orange hover:bg-wedding-orange-hover text-white">
                 Sign up
               </Button>
