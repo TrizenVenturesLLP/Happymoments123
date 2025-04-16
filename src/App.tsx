@@ -12,7 +12,9 @@ import Login from "./pages/login";
 import AddVendor from "./pages/addVendor";
 const queryClient = new QueryClient();
 
+
 const App = () => (
+  <PrimeReactProvider>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -25,8 +27,9 @@ const App = () => (
           <Route path="/category/:categoryName" element={<Navigate to="/" />} />
           <Route path="/categories" element={<Navigate to="/" />} />
           {/* Redirect vendor pages to home for now */}
-          <Route path="/vendors/:vendorId" element={<Navigate to="/" />} />
-          <Route path="/vendors" element={<Navigate to="/" />} />
+          <Route path="/vendor/:vendorId" element={<VendorDetails />} />
+
+          <Route path="/vendor" element={<VendorDetails/>} />
           {/* Redirect blog pages to home for now */}
           <Route path="/blog/:blogId" element={<Navigate to="/" />} />
           <Route path="/blog" element={<Navigate to="/" />} />
@@ -39,6 +42,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </PrimeReactProvider>
 );
 
 export default App;

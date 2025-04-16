@@ -48,11 +48,11 @@ const Header = () => {
         <div className="flex items-center space-x-8">
           {/* Logo with image - updated with white background */}
           <Link to="/" className="flex items-center">
-            <div className="bg-white rounded-full p-1.5 mr-3">
+            <div className="bg-white rounded-full mx-1 h-8 w-8 flex items-center justify-center shadow-md">
               <img 
                 src="/favicon.ico" 
                 alt="HappyMoments Logo" 
-                className="h-10 w-10"
+                // className="w-8 rounded-full h-8"
               />
             </div>
             <span className="text-2xl font-bold text-white font-playfair">Happy<span className="text-wedding-orange">Moments</span></span>
