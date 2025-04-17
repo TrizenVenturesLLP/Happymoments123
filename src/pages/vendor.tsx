@@ -4,7 +4,7 @@ import Vendor, { PricingCategory } from "@/models/vendor";
 import Header from "@/components/layout/Header";
 import { Button } from "primereact/button";
 import Radio from "@/components/ui/tabview";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { getVendorDetails } from "../services/firestoreService.js";
 import { Skeleton } from "primereact/skeleton";
 import { extractDriveFileId } from "@/services/customs.js";
@@ -29,6 +29,10 @@ export default function VendorDetails() {
         setIsLoading(false);
       });
   }, [vendorId]);
+
+  if (!isLoading && !vendor) {
+    return <Navigate to="/" />;
+  }
 
   const openWhatsApp = () => {
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

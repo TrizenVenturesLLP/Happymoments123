@@ -39,7 +39,6 @@ const App = () => {
               {/* Redirect blog pages to home for now */}
               <Route path="/blog/:blogId" element={<Navigate to="/" />} />
               <Route path="/blog" element={<Navigate to="/" />} />
-
               <Route
                 path="/addVendor"
                 element={
@@ -48,14 +47,17 @@ const App = () => {
                   </AdminRoute>
                 }
               />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </PrimeReactProvider>
-  );
+          <Route path="/vendor" element={<VendorDetails/>} />
+          {/* Redirect blog pages to home for now */}
+          <Route path="/blog/:blogId" element={<Navigate to="/" />} />
+          <Route path="/blog" element={<Navigate to="/" />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+  </PrimeReactProvider>);
 };
 
 export default App;
