@@ -7,6 +7,7 @@ import Radio from "@/components/ui/tabview";
 import { useParams } from "react-router-dom";
 import { getVendorDetails } from "../services/firestoreService.js";
 import { Skeleton } from "primereact/skeleton";
+import { extractDriveFileId } from "@/services/customs.js";
 
 export default function VendorDetails() {
   const { vendorId } = useParams();
@@ -59,7 +60,9 @@ export default function VendorDetails() {
                   <Skeleton shape="circle" height="256px" width="256px" />
                 ) : (
                   <img
-                    src="/images/vendor.jpeg"
+                    src={`https://drive.google.com/thumbnail?id=${extractDriveFileId(
+                      vendor.image
+                    )}&sz=w1000`}
                     alt={vendor?.name}
                     className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-cover rounded-full border-2 shadow-xl"
                   />

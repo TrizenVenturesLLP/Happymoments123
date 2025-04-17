@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faHome, faInr, faStar, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faHome, faInr, faStar, faTrash, faPlus, faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const iconMap = {
   map_marker: faMapMarkerAlt,
@@ -7,7 +7,9 @@ const iconMap = {
   home: faHome, 
   star:faStar,
   trash:faTrash,
-  plus:faPlus
+  plus:faPlus,
+  tick:faCheck,
+  cross:faTimes
   
 };
 

@@ -1,5 +1,5 @@
 interface Vendor {
-    id:number;
+    id:string;
     vendorId?:string;
     name:string;
     category: Array<string>;
@@ -12,6 +12,7 @@ interface Vendor {
     price?:PricingCategory;
     videos?:Array<string>;
     description?:string;
+    phone?:string;
 }
 
 

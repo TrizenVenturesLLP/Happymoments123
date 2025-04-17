@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Heart } from "lucide-react";
@@ -8,7 +8,7 @@ import Vendor from "@/models/vendor";
 // Mock vendor data with Indian names and locations
 const vendors: Array<Vendor> = [
   {
-    id: 1,
+    id: "1",
     name: "Maxo Events",
     category: ["Events"],
     location: "Hyderabad, Telangana",
@@ -20,7 +20,7 @@ const vendors: Array<Vendor> = [
     vendorId: "Qo1hqRHjtOqYmmeqD7dX",
   },
   {
-    id: 2,
+    id: "2",
     name: "JJ Events",
     category: ["Events"],
     location: "Hyderabad, Telangana",
@@ -30,7 +30,7 @@ const vendors: Array<Vendor> = [
     featured: false,
   },
   {
-    id: 3,
+    id: "3",
     name: "Siddru bakers",
     category: ["Cake & Sweets"],
     location: "Bangalore, Karnataka",
@@ -40,7 +40,7 @@ const vendors: Array<Vendor> = [
     featured: true,
   },
   {
-    id: 4,
+    id: "4",
     name: "Myra",
     category: ["Entertainment"],
     location: "Sarronagar, Telangana",
@@ -53,6 +53,9 @@ const vendors: Array<Vendor> = [
 ];
 
 const VendorSection = () => {
+
+  const navigate = useNavigate();
+
   const [favorites, setFavorites] = useState<number[]>([]);
 
   const toggleFavorite = (id: number) => {
@@ -89,12 +92,12 @@ const VendorSection = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <button
-                  onClick={() => toggleFavorite(vendor.id)}
+                  onClick={() => toggleFavorite(Number(vendor.id))}
                   className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-xs rounded-full shadow-sm transition-all hover:bg-white"
                 >
                   <Heart
                     className={`h-5 w-5 ${
-                      favorites.includes(vendor.id)
+                      favorites.includes(Number(vendor.id))
                         ? "fill-wedding-orange text-wedding-orange"
                         : "text-wedding-gray"
                     }`}
@@ -143,13 +146,13 @@ const VendorSection = () => {
 
                 <div className="flex items-stretch">
                   {" "}
-                  <Button className="w-full bg-wedding-orange text-white hover:bg-wedding-orange-hover transition-custom">
-                    <Link
+                  <Button onClick={()=>navigate(`/vendor/${vendor.vendorId??""}`)} className="w-full bg-wedding-orange text-white hover:bg-wedding-orange-hover transition-custom">
+                    {/* <Link
                     to={`/vendor/${vendor.vendorId??""}`}
                       className="w-full text-white"
-                    >
+                    > */}
                       More details
-                    </Link>
+                    {/* </Link> */}
                   </Button>
                   <span className="px-1"></span>
                   <Button className="w-full bg-wedding-orange text-white hover:bg-wedding-orange-hover transition-custom">

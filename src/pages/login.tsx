@@ -17,6 +17,7 @@ function Login() {
   } = useForm();
 
  const setUser = useUserStore((state) => state.setUser);
+ const user = useUserStore((state) => state.user);
  const navigate = useNavigate();
   const onSubmit = async ({ username, password }) => {
     try {
@@ -27,6 +28,7 @@ function Login() {
       );
       console.log("✅ Login successful");
       setUser(userCredential.user);
+      console.log(user);
       navigate("/");
     } catch (err) {
       console.log("errorrr", err.message);
